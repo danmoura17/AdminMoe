@@ -6,10 +6,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adminmoe.Order;
-import com.example.adminmoe.R;
 import java.util.List;
 
 
@@ -19,24 +18,27 @@ public class RecyclerView_Config {
     public void setConfig(RecyclerView recyclerView, Context context, List<Order> orders, List<String> keys){
         mContext = context;
         mOrdersAdapter = new OrdersAdapter(orders, keys);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(mOrdersAdapter);
     }
 
     class OrderItemView extends RecyclerView.ViewHolder{
-        private TextView mAttendent;
-        private TextView mDate;
+        private TextView mTitle;
+        private TextView mtotalValue;
 
         private String key;
 
         public OrderItemView(ViewGroup parent){
             super(LayoutInflater.from(mContext).inflate(R.layout.order_list_item, parent, false));
 
-            mAttendent = (TextView) itemView.findViewById(R.id.attendant_txtView);
-            mDate = (TextView) itemView.findViewById(R.id.date_txtView);
+            mTitle = (TextView) itemView.findViewById(R.id.attendant_txtView);
+            mtotalValue = (TextView) itemView.findViewById(R.id.date_txtView);
         }
 
         public void bind(Order order, String key){
-            mAttendent.setText(order.getAttendant());
-            mDate.setText(order.getDate());
+            mTitle.setText(order.getCostumerName());
+            String valuet = "R$ " + order.getTotalValue().toString();
+            mtotalValue.setText(valuet);
             this.key = key;
         }
     }

@@ -1,5 +1,7 @@
 package com.example.adminmoe;
 
+import android.provider.ContactsContract;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,6 +18,7 @@ public class FirebaseDatabaseHelper {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReferenceOrders;
     private List<Order> orders = new ArrayList<>();
+    long endAt = 100L;
 
     public interface DataStatus{
         void DataIsLoaded(List<Order>orders, List<String> keys);
@@ -27,7 +30,7 @@ public class FirebaseDatabaseHelper {
     public FirebaseDatabaseHelper() {
         try{
             mDatabase = FirebaseDatabase.getInstance();
-            mReferenceOrders = mDatabase.getReference("pedidos");
+            mReferenceOrders = mDatabase.getReference();
         } catch (Exception ex){
             System.out.println(ex);
         }
@@ -35,24 +38,37 @@ public class FirebaseDatabaseHelper {
     }
 
     public void readOrders(final DataStatus dataStatus){
-        mReferenceOrders.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                orders.clear();
-                List<String> keys = new ArrayList<>();
-                for(DataSnapshot keyNode : dataSnapshot.getChildren()){
-                    keys.add(keyNode.getKey());
-                    Order order = keyNode.getValue(Order.class);
-                    orders.add(order);
+
+        try{
+            mReferenceOrders.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    orders.clear();
+                    for (DataSnapshot keyNode : dataSnapshot.getChildren()){
+                        List<String> keys = new ArrayList<>();
+                        for(DataSnapshot subKeyNode : dataSnapshot.getChildren()){
+                            Order order = new Order();
+                            keys.add(subKeyNode.getKey());
+                            order.setCostumerName(subKeyNode.child("costumerName").getValue(String.class));
+                            Double value = subKeyNode.child("totalValue").getValue(Double.class);
+
+                            order.setTotalValue(value);
+                            orders.add(order);
+                        }
+                        dataStatus.DataIsLoaded(orders, keys);
+                    }
+
                 }
-                dataStatus.DataIsLoaded(orders, keys);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        } catch (Exception ex){
+            System.out.println(ex);
+        }
+
     }
 
 

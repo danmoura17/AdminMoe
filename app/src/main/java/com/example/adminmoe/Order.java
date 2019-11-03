@@ -1,30 +1,31 @@
 package com.example.adminmoe;
 
 public class Order {
-    private String Attendant;
-    private String Date;
+    private String costumerName;
+    private Double totalValue;
 
     public Order() {
+
     }
 
-    public Order(String attendant, String date) {
-        Attendant = attendant;
-        Date = date;
+    public Order(String costumerName, Double totalValue) {
+        this.costumerName = costumerName;
+        this.totalValue = totalValue;
     }
 
-    public String getAttendant() {
-        return Attendant;
+    public String getCostumerName() {
+        return costumerName;
     }
 
-    public void setAttendant(String attendant) {
-        Attendant = attendant;
+    public void setCostumerName(String costumerName) {
+        this.costumerName = "Cliente: " + costumerName;
     }
 
-    public String getDate() {
-        return Date;
+    public Double getTotalValue() {
+        return totalValue;
     }
 
-    public void setDate(String date) {
-        Date = date;
+    public void setTotalValue(Double totalValue) {
+        this.totalValue = totalValue;
     }
 }

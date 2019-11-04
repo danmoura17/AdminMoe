@@ -51,8 +51,9 @@ public class FirebaseDatabaseHelper {
                             keys.add(subKeyNode.getKey());
                             order.setCostumerName(subKeyNode.child("costumerName").getValue(String.class));
                             Double value = subKeyNode.child("totalValue").getValue(Double.class);
-
-                            order.setTotalValue(value);
+                            if(value != null){
+                                order.setTotalValue(value);
+                            }
                             orders.add(order);
                         }
                         dataStatus.DataIsLoaded(orders, keys);

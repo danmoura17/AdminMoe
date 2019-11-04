@@ -37,8 +37,16 @@ public class RecyclerView_Config {
 
         public void bind(Order order, String key){
             mTitle.setText(order.getCostumerName());
-            String valuet = "R$ " + order.getTotalValue().toString();
-            mtotalValue.setText(valuet);
+            try{
+                if (order.getTotalValue() != null){
+                    String valuet = "R$ " + order.getTotalValue().toString();
+                    mtotalValue.setText(valuet);
+                }
+            } catch (Exception ex){
+                System.out.println(ex);
+            }
+
+
             this.key = key;
         }
     }

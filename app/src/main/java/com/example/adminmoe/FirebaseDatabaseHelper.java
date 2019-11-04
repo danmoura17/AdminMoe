@@ -44,7 +44,7 @@ public class FirebaseDatabaseHelper {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     orders.clear();
-                    for (DataSnapshot keyNode : dataSnapshot.getChildren()){
+
                         List<String> keys = new ArrayList<>();
                         for(DataSnapshot subKeyNode : dataSnapshot.getChildren()){
                             Order order = new Order();
@@ -57,7 +57,7 @@ public class FirebaseDatabaseHelper {
                             orders.add(order);
                         }
                         dataStatus.DataIsLoaded(orders, keys);
-                    }
+
 
                 }
 

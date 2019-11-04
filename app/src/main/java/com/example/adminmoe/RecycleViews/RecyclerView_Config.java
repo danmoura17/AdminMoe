@@ -1,4 +1,4 @@
-package com.example.adminmoe;
+package com.example.adminmoe.RecycleViews;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.adminmoe.Models.Order;
+import com.example.adminmoe.R;
 
 import java.util.List;
 

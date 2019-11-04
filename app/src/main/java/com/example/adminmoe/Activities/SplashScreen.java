@@ -1,8 +1,7 @@
-package com.example.adminmoe;
+package com.example.adminmoe.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

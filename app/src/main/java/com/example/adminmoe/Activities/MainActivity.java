@@ -1,11 +1,14 @@
-package com.example.adminmoe;
+package com.example.adminmoe.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+
+import com.example.adminmoe.Helpers.FirebaseDatabaseHelper;
+import com.example.adminmoe.Models.Order;
+import com.example.adminmoe.R;
+import com.example.adminmoe.RecycleViews.RecyclerView_Config;
 
 import java.util.List;
 
@@ -24,20 +27,6 @@ public class MainActivity extends AppCompatActivity {
                 new RecyclerView_Config().setConfig(mRecyclerView, MainActivity.this, orders, keys);
             }
 
-            @Override
-            public void DataIsInserted() {
-
-            }
-
-            @Override
-            public void DataIsUpdated() {
-
-            }
-
-            @Override
-            public void DataIsDeleted() {
-
-            }
         });
     }
 }

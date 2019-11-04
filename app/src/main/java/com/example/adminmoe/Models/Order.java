@@ -1,4 +1,4 @@
-package com.example.adminmoe;
+package com.example.adminmoe.Models;
 
 public class Order {
     private String costumerName;

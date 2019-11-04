@@ -1,16 +1,14 @@
-package com.example.adminmoe;
-
-import android.provider.ContactsContract;
+package com.example.adminmoe.Helpers;
 
 import androidx.annotation.NonNull;
 
+import com.example.adminmoe.Models.Order;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Console;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -22,9 +20,6 @@ public class FirebaseDatabaseHelper {
 
     public interface DataStatus{
         void DataIsLoaded(List<Order>orders, List<String> keys);
-        void DataIsInserted();
-        void DataIsUpdated();
-        void DataIsDeleted();
     }
 
     public FirebaseDatabaseHelper() {
